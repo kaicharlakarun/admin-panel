@@ -1,66 +1,137 @@
-import React from "react";
-
-const menuItemsTop = [
-  "Dashboard",
-  "Sales",
-  "Product",
-  "Promotions",
-  "Analytics",
-  "Reports",
-];
-
-const menuItemsBottom = ["Privacy", "Settings"];
+import React, { useState } from "react";
+import {
+  Home,
+  Users,
+  Box,
+  ClipboardList,
+  BarChart3,
+  Flag,
+  Mail,
+  Bell,
+  Settings,
+  LogOut,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 
 const Sidebar = () => {
+  const [openProducts, setOpenProducts] = useState(true);
+  const [openSettings, setOpenSettings] = useState(false);
+
   return (
     <aside className="h-full w-64 flex flex-col bg-slate-950 text-slate-100 px-5 py-6 gap-6">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <div className="h-9 w-9 rounded-2xl bg-blue-500 flex items-center justify-center font-bold text-lg">
-          e
-        </div>
-        <span className="text-xl font-semibold">eMart</span>
+       
+        <span className="text-xl font-semibold">Whatnot Store</span>
       </div>
 
-      <div className="text-xs uppercase tracking-wide text-slate-400">
-        Admin Tools
-      </div>
+      {/* Menu Items */}
+      <nav className="flex flex-col gap-1 text-sm">
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <Home size={18} />
+          <span>Dashboard</span>
+        </button>
 
-      {/* Top menu */}
-      <nav className="flex flex-col gap-1">
-        {menuItemsTop.map((item, i) => (
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <Users size={18} />
+          <span>Users</span>
+        </button>
+
+        {/* Products with dropdown */}
+        <div>
           <button
-            key={item}
-            className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition 
-              ${i === 0
-                ? "bg-blue-600 text-white shadow-sm"
-                : "text-slate-200 hover:bg-slate-800/70"}`}
+            onClick={() => setOpenProducts((v) => !v)}
+            className="flex w-full items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-800/70"
           >
-            <span className="h-2 w-2 rounded-full bg-slate-500" />
-            {item}
+            <div className="flex items-center gap-3">
+              <Box size={18} />
+              <span>Products</span>
+            </div>
+            {openProducts ? (
+              <ChevronDown size={16} className="text-slate-400" />
+            ) : (
+              <ChevronRight size={16} className="text-slate-400" />
+            )}
           </button>
-        ))}
+
+          {openProducts && (
+            <div className="ml-9 flex flex-col gap-1 text-xs text-slate-300 mt-1">
+              <button className="text-left px-2 py-1 hover:text-white">
+                Brands
+              </button>
+              <button className="text-left px-2 py-1 bg-slate-900 rounded-md text-white">
+                Categories
+              </button>
+              <button className="text-left px-2 py-1 hover:text-white">
+                Products
+              </button>
+            </div>
+          )}
+        </div>
+
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <ClipboardList size={18} />
+          <span>Orders</span>
+        </button>
+
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <BarChart3 size={18} />
+          <span>Ledgers</span>
+        </button>
+
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <Flag size={18} />
+          <span>Banners</span>
+        </button>
+
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <Mail size={18} />
+          <span>Messages</span>
+        </button>
+
+        <button className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-800/70">
+          <Bell size={18} />
+          <span>Notifications</span>
+        </button>
+
+        {/* Settings dropdown */}
+        <div>
+          <button
+            onClick={() => setOpenSettings((b) => !b)}
+            className="flex w-full items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-800/70"
+          >
+            <div className="flex items-center gap-3">
+              <Settings size={18} />
+              <span>Settings</span>
+            </div>
+            {openSettings ? (
+              <ChevronDown size={16} className="text-slate-400" />
+            ) : (
+              <ChevronRight size={16} className="text-slate-400" />
+            )}
+          </button>
+
+          {openSettings && (
+            <div className="ml-9 flex flex-col gap-1 text-xs text-slate-300 mt-1">
+              <button className="text-left px-2 py-1 hover:text-white">
+                Terms & Conditions
+              </button>
+              <button className="text-left px-2 py-1 hover:text-white">
+                Privacy Policy
+              </button>
+              <button className="text-left px-2 py-1 hover:text-white">
+                FAQs
+              </button>
+            </div>
+          )}
+        </div>
       </nav>
 
-      <div className="mt-4">
-        <div className="text-xs uppercase tracking-wide text-slate-400 mb-2">
-          Configuration
-        </div>
-        <nav className="flex flex-col gap-1">
-          {menuItemsBottom.map((item) => (
-            <button
-              key={item}
-              className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-800/70"
-            >
-              <span className="h-2 w-2 rounded-full bg-slate-500" />
-              {item}
-            </button>
-          ))}
-        </nav>
-      </div>
-
+      {/* Logout button */}
       <button className="mt-auto flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-400 hover:bg-slate-800/70">
-        ⏻ Log out
+        <LogOut size={18} />
+        Log out
       </button>
     </aside>
   );
