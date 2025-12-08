@@ -88,7 +88,7 @@ export const loginSuperAdmin = async (req, res) => {
   }
 };
 
-// POST /api/superadmin/forgot-password
+// 📧 POST /api/superadmin/forgot-password
 export const forgotPasswordSuperAdmin = async (req, res) => {
   try {
     const { email } = req.body;
@@ -154,7 +154,7 @@ If you did not request this, ignore this email.
   }
 };
 
-// POST /api/superadmin/reset-password/:token
+// 🔁 POST /api/superadmin/reset-password/:token
 export const resetPasswordSuperAdmin = async (req, res) => {
   try {
     const { token } = req.params;

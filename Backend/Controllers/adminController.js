@@ -1,3 +1,5 @@
+// Controllers/adminController.js
+
 import Admin from "../Models/Admin/admin.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -93,6 +95,7 @@ export const loginAdmin = async (req, res) => {
   }
 };
 
+// 📧 POST /api/admin/forgot-password
 export const forgotPasswordAdmin = async (req, res) => {
   try {
     const { email } = req.body;
@@ -105,6 +108,8 @@ export const forgotPasswordAdmin = async (req, res) => {
     if (!admin) {
       return res.status(404).json({ message: "No admin found with this email" });
     }
+
+    // Generate reset token (raw)
     const resetToken = crypto.randomBytes(20).toString("hex");
 
     // Hash before saving to DB
@@ -156,6 +161,7 @@ If you did not request this, ignore this email.
   }
 };
 
+// 🔁 POST /api/admin/reset-password/:token
 export const resetPasswordAdmin = async (req, res) => {
   try {
     const { token } = req.params;
