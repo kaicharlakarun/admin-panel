@@ -85,6 +85,7 @@ export const loginCustomer = async (req, res) => {
   }
 };
 
+// 📧 POST /api/customer/forgot-password
 export const forgotPasswordCustomer = async (req, res) => {
   try {
     const { email } = req.body;
@@ -146,7 +147,7 @@ If you did not request this, please ignore this email.
   }
 };
 
-// POST /api/customer/reset-password/:token
+// 🔁 POST /api/customer/reset-password/:token
 export const resetPasswordCustomer = async (req, res) => {
   try {
     const { token } = req.params;
