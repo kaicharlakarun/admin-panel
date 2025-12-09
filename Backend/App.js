@@ -5,6 +5,7 @@ import path from "path";
 import adminRoute from "./Routes/adminRoute.js";
 import customerRoute from "./Routes/customerRoute.js";
 import superadminRoute from "./Routes/superadminRoute.js";
+import billingRoute from "./Routes/billingRoute.js";
 
 dotenv.config();
 const app = express();
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use("/api/admin", adminRoute);
 app.use("/api/customer", customerRoute);
 app.use("/api/superadmin", superadminRoute);
-
+app.use("/api/billing", billingRoute);
 
 // Production static (optional, leave for later)
 if (process.env.NODE_ENV === "production") {

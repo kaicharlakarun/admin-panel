@@ -22,7 +22,7 @@ const billingSchema = new mongoose.Schema(
         },
         name: String,
         quantity: { type: Number, default: 1 },
-        price: { type: Number, required: true }, // price per unit
+        price: { type: Number, required: true }, // per unit
         total: { type: Number, required: true }, // quantity * price
       },
     ],
@@ -63,4 +63,4 @@ const billingSchema = new mongoose.Schema(
 );
 
 const Billing = mongoose.model("Billing", billingSchema);
-module.exports = Billing;
+export default Billing;
