@@ -1,4 +1,4 @@
-import Customer from "../Models/Customer/customer.js";
+import Customer from "../Models/Customer/Customer.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
